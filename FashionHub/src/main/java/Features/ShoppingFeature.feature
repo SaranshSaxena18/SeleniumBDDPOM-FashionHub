@@ -19,13 +19,13 @@
 @tag
 Feature: To test the shopping feature for the FashionHub Website
   
+	Background:
+	Given User visit the FashionHub Website
 
   @tag1
   Scenario: User browse and search through the product list
-    Given User visit the FashionHub Website
-   # And scroll through the featured products
-   # When user click on the view all products
-   # And visit the all products page
+   Given user scroll through the featured products
+   When user click on the view all products
    # And search a product
    # Then product should be searched
 
