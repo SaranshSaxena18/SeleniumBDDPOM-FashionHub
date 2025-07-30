@@ -39,19 +39,24 @@ public class StepDefination extends BaseTest
 
 	@When("user click on the view all products")
 	public void user_click_on_the_view_all_products() {
-	    homePage.visitAllProductsPage();
+		allProductsPage = homePage.visitAllProductsPage();
 	}
 
-	@When("search a product")
-	public void search_a_product() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	 @When("search a (.+)$")
+	 public void search_a_product(String product){
+		 allProductsPage.searchProduct(product);
 	}
 
-	@Then("product should be searched")
-	public void product_should_be_searched() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("(.+) should be searched$")
+	public void product_should_be_searched(String product) {
+		List<String> searchedProductsName = allProductsPage.getSearchedProducts();
+		Assert.assertEquals(product, searchedProductsName.getFirst()," "+product+" was not searched, hence search functionality is not working.");
 	}
+	
+	@Then("products should be searched as per the filter")
+	public void products_should_be_searched_as_per_the_filter() {
+		allProductsPage.filterProducts();
+	}
+
 
 }

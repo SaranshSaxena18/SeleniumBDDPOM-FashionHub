@@ -25,7 +25,7 @@ public class Utility {
 		js.executeScript("arguments[0].scrollIntoView(true)", element);
 	}
 	
-	public void waitToBeVisile(WebElement element)
+	public void waitToBeVisible(WebElement element)
 	{
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		try {
