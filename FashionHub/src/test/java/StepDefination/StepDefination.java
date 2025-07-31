@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -55,7 +56,42 @@ public class StepDefination extends BaseTest
 	
 	@Then("products should be searched as per the filter")
 	public void products_should_be_searched_as_per_the_filter() {
-		allProductsPage.filterProducts();
+		List<List<String>> filteredProductsLists = allProductsPage.filterProducts("Nike","Gap","Zara");
+		
+		List<String> FilteredMenProductsTags = filteredProductsLists.get(0); 
+		Assert.assertTrue(FilteredMenProductsTags.stream().allMatch(s->"Men".equals(s)));
+		
+		List<String> FilteredWomenProductsTags = filteredProductsLists.get(1);
+		Assert.assertTrue(FilteredWomenProductsTags.stream().allMatch(s->"Women".equals(s)));
+		
+		List<String> FilteredFootwearProductsTags = filteredProductsLists.get(2);
+		Assert.assertTrue(FilteredFootwearProductsTags.stream().allMatch(s->"Footwear".equals(s)));
+		
+		List<String> FilteredAccessoriesProductsTags = filteredProductsLists.get(3);
+		Assert.assertTrue(FilteredAccessoriesProductsTags.stream().allMatch(s->"Accessories".equals(s)));
+		
+		List<String> AllCategoryProductsTags = filteredProductsLists.get(4);
+		Assert.assertTrue(Stream.of("Men","Women","Footwear","Accessories").allMatch(AllCategoryProductsTags::contains));
+		
+		List<String> FilteredCompanyOneProductsTags = filteredProductsLists.get(5);
+		Assert.assertTrue(FilteredCompanyOneProductsTags.stream().allMatch(s->"Nike".equals(s)));
+		
+		List<String> FilteredCompanyTwoProductsTags = filteredProductsLists.get(6);
+		Assert.assertTrue(FilteredCompanyTwoProductsTags.stream().allMatch(s->"Gap".equals(s)));
+		
+		List<String> FilteredCompanyThreeProductsTags = filteredProductsLists.get(7);
+		Assert.assertTrue(FilteredCompanyThreeProductsTags.stream().allMatch(s->"Zara".equals(s)));
+		
+		List<String> FilteredAllBrandsProductsTags = filteredProductsLists.get(8);
+		Assert.assertTrue(Stream.of("Nike","Gap","Zara").allMatch(FilteredAllBrandsProductsTags::contains));
+		
+		List<String> FilteredProductsByPriceLowToHigh = filteredProductsLists.get(9);
+		//Assert.assertTrue(FilteredProductsByPriceLowToHigh.stream());
+		FilteredProductsByPriceLowToHigh.stream().forEach(System.out::println);
+		
+		List<String> FilteredProductsByPriceHighToLow = filteredProductsLists.get(10);
+		List<String> FilteredProductsByRating = filteredProductsLists.get(11);
+		List<String> FilteredProductsNames = filteredProductsLists.get(12);
 	}
 
 

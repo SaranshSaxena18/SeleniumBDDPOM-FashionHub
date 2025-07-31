@@ -1,6 +1,7 @@
 package PageObject;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,22 +21,38 @@ public class AllProductsPage extends Utility{
 	SoftAssert softAssert = new SoftAssert();
 	
 	@FindBy(xpath="//h1[text()='All Products']")
-	WebElement AllProductsHeading;
+	WebElement AllProductsHeading_xpath;
 	
 	@FindBy(xpath="//label[text()='Search']//following-sibling::input[@placeholder='Search products...']")
-	WebElement SearchProducts;
+	WebElement SearchProducts_xpath;
 	
 	@FindBy(xpath="(//div[@class='row'])[1]/descendant::div[@class='card-body d-flex flex-column']/h6")
-	List<WebElement> SearchedProducts;  
+	List<WebElement> SearchedProducts_xpath;  
 	
 	@FindBy(xpath="//label[text()='Category']/following-sibling::select")
-	WebElement CategoryDropDown;
+	WebElement CategoryDropDown_xpath;
 	
 	@FindBy(xpath="//label[text()='Brand']/following-sibling::select")
-	WebElement BrandDropDown;
+	WebElement BrandDropDown_xpath;
+	
+	@FindBy(xpath="//label[text()='Sort By']/following-sibling::select")
+	WebElement SortByDropDown_xpath;
+	
+	@FindBy(xpath="//span[@class='badge bg-primary']")
+	List<WebElement> FilteredProducts_xpath;
+	
+	@FindBy(xpath="(//div[@class='row'])[1]/descendant::div[@class='card-body d-flex flex-column']/p")
+	List<WebElement> FilteredCompanyProductTags_xpath;
+	
+	@FindBy(xpath="//div[@class='mt-auto']/descendant::span[1]")
+	List<WebElement> FilteredProductsPrice_xpath;
+	
+	@FindBy(xpath="//small[@class='text-muted']")
+	List<WebElement> FilteredProductsRatings_xpath;
 	
 	@FindBy(xpath="(//div[@class='row'])[1]/descendant::div[@class='card-body d-flex flex-column']/h6")
-	List<WebElement> FilteredProducts;
+	List<WebElement> FilteredProductsNames_xpath;
+
 	
 	public AllProductsPage(WebDriver driver)
 	{
@@ -46,69 +63,87 @@ public class AllProductsPage extends Utility{
 	
 	public void verifyAllProductPageLoaded()
 	{
-		waitToBeVisible(AllProductsHeading);
-		Assert.assertTrue(AllProductsHeading.isDisplayed(),"All Products page is not loaded.");
+		waitToBeVisible(AllProductsHeading_xpath);
+		Assert.assertTrue(AllProductsHeading_xpath.isDisplayed(),"All Products page is not loaded.");
 	}
 	
 	public void searchProduct(String product)
 	{
-		waitToBeVisible(SearchProducts);
-		SearchProducts.sendKeys(product);
+		waitToBeVisible(SearchProducts_xpath);
+		SearchProducts_xpath.sendKeys(product);
 		
 	}
 	
 	public List<String> getSearchedProducts()
 	{
-		List<String> SearchProductsName = SearchedProducts.stream().map(WebElement::getText).collect(Collectors.toList());
+		List<String> SearchProductsName = SearchedProducts_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		return SearchProductsName;
 	}
 	
-	public void filterProducts()
+	public List<List<String>> filterProducts(String companyOne, String companyTwo, String companyThree)
 	{
 		//Category Drop Down -------------------
-		waitToBeVisible(CategoryDropDown);
-		Select categorySelect = new Select(CategoryDropDown);
+		waitToBeVisible(CategoryDropDown_xpath);
+		Select categorySelect = new Select(CategoryDropDown_xpath);
+		
 		categorySelect.selectByValue("Men");
 		softAssert.assertEquals("Men (3)",categorySelect.getFirstSelectedOption().getText());
-		List<String> FilteredMenProductsName = FilteredProducts.stream().map(WebElement::getText).collect(Collectors.toList());
+		List<String> FilteredMenProductsTags = FilteredProducts_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
 		categorySelect.selectByValue("Women");
 		softAssert.assertEquals("Women (3)", categorySelect.getFirstSelectedOption().getText());
-		List<String> FilteredWomenProductsName = FilteredProducts.stream().map(WebElement::getText).collect(Collectors.toList());
+		List<String> FilteredWomenProductsTags = FilteredProducts_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
 		categorySelect.selectByValue("Footwear");
 		softAssert.assertEquals("Footwear (1)", categorySelect.getFirstSelectedOption().getText());
-		List<String> FilteredFootwearProductsName = FilteredProducts.stream().map(WebElement::getText).collect(Collectors.toList());
+		List<String> FilteredFootwearProductsTags = FilteredProducts_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
 		categorySelect.selectByValue("Accessories");
 		softAssert.assertEquals("Accessories (1)", categorySelect.getFirstSelectedOption().getText());
-		List<String> FilteredAccessoriesProductsName = FilteredProducts.stream().map(WebElement::getText).collect(Collectors.toList());
+		List<String> FilteredAccessoriesProductsTags = FilteredProducts_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
+		
+		categorySelect.selectByVisibleText("All Categories");
+		softAssert.assertEquals("All Categories",categorySelect.getFirstSelectedOption().getText());
+		List<String> AllCategoryProductsTags = FilteredProducts_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
 		//Brand Drop Down -------------------
-		Select brandSelect = new Select(BrandDropDown);
-		brandSelect.selectByValue("Nike");
-		softAssert.assertEquals("Nike (1)", brandSelect.getFirstSelectedOption().getText());
+		Select brandSelect = new Select(BrandDropDown_xpath);
 		
-		brandSelect.selectByValue("Zara");
-		softAssert.assertEquals("Zara (1)", brandSelect.getFirstSelectedOption().getText());
+		brandSelect.selectByValue(companyOne);
+		List<String> FilteredCompanyOneProductsTags = FilteredCompanyProductTags_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
-		brandSelect.selectByValue("Levi's");
-		softAssert.assertEquals("Levi's (1)", brandSelect.getFirstSelectedOption().getText());
+		brandSelect.selectByValue(companyTwo);
+		List<String> FilteredCompanyTwoProductsTags = FilteredCompanyProductTags_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
-		brandSelect.selectByValue("Coach");
-		softAssert.assertEquals("Coach (1)", brandSelect.getFirstSelectedOption().getText());
+		brandSelect.selectByValue(companyThree);
+		List<String> FilteredCompanyThreeProductsTags = FilteredCompanyProductTags_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
-		brandSelect.selectByValue("Adidas");
-		softAssert.assertEquals("Adidas (1)", brandSelect.getFirstSelectedOption().getText());
+		brandSelect.selectByVisibleText("All Brands");
+		softAssert.assertEquals("All Brands",brandSelect.getFirstSelectedOption().getText());
+		List<String> FilteredAllBrandsProductsTags = FilteredCompanyProductTags_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
-		brandSelect.selectByValue("H&M");
-		softAssert.assertEquals("H&M (1)", brandSelect.getFirstSelectedOption().getText());
+		//SortByDropDown---------------------------
+		Select sortBySelect = new Select(SortByDropDown_xpath);
 		
-		brandSelect.selectByValue("Calvin Klein");
-		softAssert.assertEquals("Calvin Klein (1)", brandSelect.getFirstSelectedOption().getText());
+		sortBySelect.selectByValue("price-low");
+		softAssert.assertEquals("Price: Low to High",sortBySelect.getFirstSelectedOption().getText());
+		List<String> FilteredProductsByPriceLowToHigh = FilteredProductsPrice_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 		
-		brandSelect.selectByValue("Gap");
-		softAssert.assertEquals("Gap (1)", brandSelect.getFirstSelectedOption().getText());
-	}
+		sortBySelect.selectByValue("price-high");
+		softAssert.assertEquals("Price: High to Low",sortBySelect.getFirstSelectedOption().getText());
+		List<String> FilteredProductsByPriceHighToLow = FilteredProductsPrice_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
 
+		sortBySelect.selectByValue("rating");
+		softAssert.assertEquals("Rating",sortBySelect.getFirstSelectedOption().getText());
+		List<String> FilteredProductsByRating = FilteredProductsRatings_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
+		
+		sortBySelect.selectByValue("name");
+		softAssert.assertEquals("Name",sortBySelect.getFirstSelectedOption().getText());
+		List<String> FilteredProductsNames = FilteredProductsNames_xpath.stream().map(WebElement::getText).collect(Collectors.toList());
+		
+		softAssert.assertAll();
+		return Arrays.asList(FilteredMenProductsTags,FilteredWomenProductsTags, FilteredFootwearProductsTags, FilteredAccessoriesProductsTags, AllCategoryProductsTags, 
+				FilteredCompanyOneProductsTags, FilteredCompanyTwoProductsTags, FilteredCompanyThreeProductsTags, FilteredAllBrandsProductsTags, FilteredProductsByPriceLowToHigh, 
+				FilteredProductsByPriceHighToLow, FilteredProductsByRating, FilteredProductsNames);
+	}
 }
