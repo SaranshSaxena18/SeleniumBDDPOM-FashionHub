@@ -5,7 +5,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.testng.Assert;
@@ -86,13 +90,38 @@ public class StepDefination extends BaseTest
 		Assert.assertTrue(Stream.of("Nike","Gap","Zara").allMatch(FilteredAllBrandsProductsTags::contains));
 		
 		List<String> FilteredProductsByPriceLowToHigh = filteredProductsLists.get(9);
-		//Assert.assertTrue(FilteredProductsByPriceLowToHigh.stream());
-		FilteredProductsByPriceLowToHigh.stream().forEach(System.out::println);
+		//FilteredProductsByPriceLowToHigh.stream().forEach(System.out::println);
+		List<Double> actualProductsPriceListLowToHigh =  FilteredProductsByPriceLowToHigh.stream().flatMap(s->{//flatMap merges multiple lists of numbers into a single stream.
+			Matcher m = Pattern.compile("\\d+(\\.\\d+)?").matcher(s); //\\d+(\\.\\d+)? matches: one or more digits, optionally followed by a dot and one or more digits.
+			List<Double> nums = new ArrayList<>();
+			while(m.find()) {
+				nums.add(Double.parseDouble(m.group()));//m.group() extracts the part of the input string matched by the regex group.
+			}
+			return nums.stream();
+		}).collect(Collectors.toList());
+		System.out.println();
+		
+		List<Double> expectedProductsPriceListLowToHigh = new ArrayList<>(actualProductsPriceListLowToHigh);
+		Collections.sort(expectedProductsPriceListLowToHigh);
+		
+		//Assert.assertEquals(expectedProductsPriceListLowToHigh, actualProductsPriceListLowToHigh, "Products are not sorted according to Price Low to High.");
 		
 		List<String> FilteredProductsByPriceHighToLow = filteredProductsLists.get(10);
+		List<Double> actualProductPriceListHighToLow = FilteredProductsByPriceHighToLow.stream().flatMap(s->{
+			Matcher m = Pattern.compile("\\d+(\\.\\d+)?").matcher(s);
+			List<Double> nums = new ArrayList<>();
+			while(m.find())
+			{
+				nums.add(Double.parseDouble(m.group()));
+			}
+			return nums.stream();
+		}).collect(Collectors.toList());
+		List<Double> expectedProductsPriceListHighToLow = new ArrayList<>(actualProductPriceListHighToLow);
+		Collections.sort(expectedProductsPriceListHighToLow);
+		
+		Assert.assertEquals(actualProductPriceListHighToLow, expectedProductsPriceListHighToLow, "Products are not sorted according to Price High to Low.");
+		
 		List<String> FilteredProductsByRating = filteredProductsLists.get(11);
 		List<String> FilteredProductsNames = filteredProductsLists.get(12);
 	}
-
-
 }
