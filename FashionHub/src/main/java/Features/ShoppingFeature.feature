@@ -38,6 +38,5 @@ Feature: To test the shopping feature for the FashionHub Website
   Scenario: User browse and search through the product list
    Given user scroll through the featured products
    When user click on the view all products
-   #And filter the products
    Then products should be searched as per the filter
 

@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Aug 01 23:03:44 IST 2025</td>
+<td>Started on:</td><td>Sat Aug 02 23:06:39 IST 2025</td>
 </tr>
-<tr><td>Total time:</td><td>11 seconds (11148 ms)</td>
+<tr><td>Total time:</td><td>11 seconds (11607 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
@@ -77,7 +77,22 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='Runner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User browse and search through the product list", "To test the shopping feature for the FashionHub Website"</td>
-<td></td>
+<td><div><pre>java.lang.AssertionError: Products are not sorted by ratings.: Lists differ at element [0]: Classic White T-Shirt != Running Shoes expected [Classic White T-Shirt] but found [Running Shoes]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:1656)
+	at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:133)
+	at ✽.products should be searched as per the filter(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:42)
+</pre></div><a href='#' onClick='toggleBox("stack-trace157004450", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace157004450'><pre>java.lang.AssertionError: Products are not sorted by ratings.: Lists differ at element [0]: Classic White T-Shirt != Running Shoes expected [Classic White T-Shirt] but found [Running Shoes]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:1656)
+	at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:133)
+	at ✽.products should be searched as per the filter(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:42)
+</pre></div></td>
 <td>10</td>
 <td>Runner.TestRunner@2362f559</td></tr>
 </table><p>
