@@ -19,24 +19,25 @@
 @tag
 Feature: To test the shopping feature for the FashionHub Website
   
+  #@tag1
 	Background:
 	Given User visit the FashionHub Website
 
-  @tag1
-  Scenario Outline: User browse and search through the product list
+  
+  Scenario Outline: Search Product
    Given user scroll through the featured products
    When user click on the view all products
    And search a <product>
    Then <product> should be searched
-   
    Examples:
    | product							 |
    | Classic White T-Shirt |
-   | Denim Jacket					 |
 
 	@CurrentDev
-  Scenario: User browse and search through the product list
+  Scenario Outline: Filter Products
    Given user scroll through the featured products
    When user click on the view all products
-   Then products should be searched as per the filter
-
+   Then products should be searched as per the filter "<Company1>" "<Company2>" "<Company3>"
+	 Examples:
+	|Company1|Company2|Company3|
+	|Nike		 |Gap		  |Zara		 |

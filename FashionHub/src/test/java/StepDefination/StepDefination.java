@@ -1,9 +1,10 @@
 package StepDefination;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,16 +12,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-
 import PageObject.AllProductsPage;
 import PageObject.HomePage;
 import TestComponents.BaseTest;
 
 public class StepDefination extends BaseTest
 {
+	    
 	SoftAssert softAssert = new SoftAssert();
 	public HomePage homePage;
 	public AllProductsPage allProductsPage;
@@ -58,9 +58,9 @@ public class StepDefination extends BaseTest
 		Assert.assertEquals(product, searchedProductsName.getFirst()," "+product+" was not searched, hence search functionality is not working.");
 	}
 	
-	@Then("products should be searched as per the filter")
-	public void products_should_be_searched_as_per_the_filter() {
-		List<List<String>> filteredProductsLists = allProductsPage.filterProducts("Nike","Gap","Zara");
+	@Then("products should be searched as per the filter {string} {string} {string}")
+	public void products_should_be_searched_as_per_the_filter(String Company1, String Company2, String Company3) {
+		List<List<String>> filteredProductsLists = allProductsPage.filterProducts(Company1,Company2,Company3);
 		
 		List<String> FilteredMenProductsTags = filteredProductsLists.get(0); 
 		Assert.assertTrue(FilteredMenProductsTags.stream().allMatch(s->"Men".equals(s)));
@@ -78,16 +78,16 @@ public class StepDefination extends BaseTest
 		Assert.assertTrue(Stream.of("Men","Women","Footwear","Accessories").allMatch(AllCategoryProductsTags::contains));
 		
 		List<String> FilteredCompanyOneProductsTags = filteredProductsLists.get(5);
-		Assert.assertTrue(FilteredCompanyOneProductsTags.stream().allMatch(s->"Nike".equals(s)));
+		Assert.assertTrue(FilteredCompanyOneProductsTags.stream().allMatch(s->Company1.equals(s)));
 		
 		List<String> FilteredCompanyTwoProductsTags = filteredProductsLists.get(6);
-		Assert.assertTrue(FilteredCompanyTwoProductsTags.stream().allMatch(s->"Gap".equals(s)));
+		Assert.assertTrue(FilteredCompanyTwoProductsTags.stream().allMatch(s->Company2.equals(s)));
 		
 		List<String> FilteredCompanyThreeProductsTags = filteredProductsLists.get(7);
-		Assert.assertTrue(FilteredCompanyThreeProductsTags.stream().allMatch(s->"Zara".equals(s)));
+		Assert.assertTrue(FilteredCompanyThreeProductsTags.stream().allMatch(s->Company3.equals(s)));
 		
 		List<String> FilteredAllBrandsProductsTags = filteredProductsLists.get(8);
-		Assert.assertTrue(Stream.of("Nike","Gap","Zara").allMatch(FilteredAllBrandsProductsTags::contains));
+		Assert.assertTrue(Stream.of(Company1,Company2,Company3).allMatch(FilteredAllBrandsProductsTags::contains));
 		
 		List<String> FilteredProductsByPriceLowToHigh = filteredProductsLists.get(9);
 		//FilteredProductsByPriceLowToHigh.stream().forEach(System.out::println);
@@ -104,7 +104,7 @@ public class StepDefination extends BaseTest
 		List<Double> expectedProductsPriceListLowToHigh = new ArrayList<>(actualProductsPriceListLowToHigh);
 		Collections.sort(expectedProductsPriceListLowToHigh);
 		//below assert is commented as this functionality in the web application is failing
-		//Assert.assertEquals(expectedProductsPriceListLowToHigh, actualProductsPriceListLowToHigh, "Products are not sorted according to Price Low to High.");
+		Assert.assertEquals(expectedProductsPriceListLowToHigh, actualProductsPriceListLowToHigh, "Products are not sorted according to Price Low to High.");
 		
 		List<String> FilteredProductsByPriceHighToLow = filteredProductsLists.get(10);
 		List<Double> actualProductPriceListHighToLow = FilteredProductsByPriceHighToLow.stream().flatMap(s->{

@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-08-02T23:06:39 IST" name="Default suite" finished-at="2025-08-02T23:06:50 IST" duration-ms="11607">
+  <suite started-at="2025-08-05T00:16:51 IST" name="Default suite" finished-at="2025-08-05T00:17:14 IST" duration-ms="23551">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:Runner.TestRunner@2362f559]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:Runner.TestRunner@4218d6a3]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2025-08-02T23:06:39 IST" name="Default test" finished-at="2025-08-02T23:06:50 IST" duration-ms="11607">
+    <test started-at="2025-08-05T00:16:51 IST" name="Default test" finished-at="2025-08-05T00:17:14 IST" duration-ms="23551">
       <class name="Runner.TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:Runner.TestRunner@2362f559]" started-at="2025-08-02T23:06:39 IST" name="setUpClass" finished-at="2025-08-02T23:06:39 IST" duration-ms="499" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:Runner.TestRunner@4218d6a3]" started-at="2025-08-05T00:16:51 IST" name="setUpClass" finished-at="2025-08-05T00:16:51 IST" duration-ms="474" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5017e1]]>
+                <![CDATA[org.testng.TestRunner@217bf99e]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:Runner.TestRunner@2362f559]" started-at="2025-08-02T23:06:39 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-08-02T23:06:50 IST" duration-ms="10982" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:Runner.TestRunner@4218d6a3]" started-at="2025-08-05T00:16:51 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-08-05T00:17:05 IST" duration-ms="13547" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["User browse and search through the product list"]]>
+                <![CDATA["Search Product"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["To test the shopping feature for the FashionHub Website"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:Runner.TestRunner@4218d6a3]" started-at="2025-08-05T00:17:05 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-08-05T00:17:14 IST" duration-ms="9449" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Filter Products"]]>
               </value>
             </param>
             <param index="1">
@@ -36,23 +52,23 @@
           </params>
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Products are not sorted by ratings.: Lists differ at element [0]: Classic White T-Shirt != Running Shoes expected [Classic White T-Shirt] but found [Running Shoes]]]>
+              <![CDATA[Products are not sorted according to Price Low to High.: Lists differ at element [1]: 99.99 != 59.99 expected [99.99] but found [59.99]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Products are not sorted by ratings.: Lists differ at element [0]: Classic White T-Shirt != Running Shoes expected [Classic White T-Shirt] but found [Running Shoes]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1590)
-at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-at org.testng.Assert.assertEquals(Assert.java:1656)
-at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:133)
-at ✽.products should be searched as per the filter(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:42)
+              <![CDATA[java.lang.AssertionError: Products are not sorted according to Price Low to High.: Lists differ at element [1]: 99.99 != 59.99 expected [99.99] but found [59.99]
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.failNotEquals(Assert.java:1037)
+at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+at org.testng.Assert.assertEquals(Assert.java:1103)
+at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:107)
+at ✽.products should be searched as per the filter "Nike" "Gap" "Zara"(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:40)
 ]]>
             </full-stacktrace>
           </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:Runner.TestRunner@2362f559]" started-at="2025-08-02T23:06:50 IST" name="tearDownClass" finished-at="2025-08-02T23:06:50 IST" duration-ms="13" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:Runner.TestRunner@4218d6a3]" started-at="2025-08-05T00:17:14 IST" name="tearDownClass" finished-at="2025-08-05T00:17:14 IST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

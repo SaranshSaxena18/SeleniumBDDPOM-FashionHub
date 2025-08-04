@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>1/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Aug 02 23:06:39 IST 2025</td>
+<td>Started on:</td><td>Tue Aug 05 00:16:51 IST 2025</td>
 </tr>
-<tr><td>Total time:</td><td>11 seconds (11607 ms)</td>
+<tr><td>Total time:</td><td>23 seconds (23551 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -70,31 +70,43 @@ function toggleAllBoxes() {
 <table width='100%' border='1' class='invocation-failed'>
 <tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
-<td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Runner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "User browse and search through the product list", "To test the shopping feature for the FashionHub Website"</td>
-<td><div><pre>java.lang.AssertionError: Products are not sorted by ratings.: Lists differ at element [0]: Classic White T-Shirt != Running Shoes expected [Classic White T-Shirt] but found [Running Shoes]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:1656)
-	at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:133)
-	at ✽.products should be searched as per the filter(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:42)
-</pre></div><a href='#' onClick='toggleBox("stack-trace157004450", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace157004450'><pre>java.lang.AssertionError: Products are not sorted by ratings.: Lists differ at element [0]: Classic White T-Shirt != Running Shoes expected [Classic White T-Shirt] but found [Running Shoes]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1590)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:1656)
-	at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:133)
-	at ✽.products should be searched as per the filter(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:42)
+<td title='Runner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Filter Products", "To test the shopping feature for the FashionHub Website"</td>
+<td><div><pre>java.lang.AssertionError: Products are not sorted according to Price Low to High.: Lists differ at element [1]: 99.99 != 59.99 expected [99.99] but found [59.99]
+	at org.testng.Assert.fail(Assert.java:99)
+	at org.testng.Assert.failNotEquals(Assert.java:1037)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+	at org.testng.Assert.assertEquals(Assert.java:1103)
+	at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:107)
+	at ✽.products should be searched as per the filter &quot;Nike&quot; &quot;Gap&quot; &quot;Zara&quot;(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:40)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1201360998", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1201360998'><pre>java.lang.AssertionError: Products are not sorted according to Price Low to High.: Lists differ at element [1]: 99.99 != 59.99 expected [99.99] but found [59.99]
+	at org.testng.Assert.fail(Assert.java:99)
+	at org.testng.Assert.failNotEquals(Assert.java:1037)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+	at org.testng.Assert.assertEquals(Assert.java:1103)
+	at StepDefination.StepDefination.products_should_be_searched_as_per_the_filter(StepDefination.java:107)
+	at ✽.products should be searched as per the filter &quot;Nike&quot; &quot;Gap&quot; &quot;Zara&quot;(file:///C:/Users/S.NandaKumar/Selenium%20UI%20Automation/FashionHub/src/main/java/Features/ShoppingFeature.feature:40)
 </pre></div></td>
-<td>10</td>
-<td>Runner.TestRunner@2362f559</td></tr>
+<td>9</td>
+<td>Runner.TestRunner@4218d6a3</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='Runner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Search Product", "To test the shopping feature for the FashionHub Website"</td>
+<td></td>
+<td>13</td>
+<td>Runner.TestRunner@4218d6a3</td></tr>
 </table><p>
 </body>
 </html>
