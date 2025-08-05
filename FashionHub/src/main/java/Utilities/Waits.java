@@ -16,13 +16,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.*;
-import org.testng.annotations.DataProvider;
 
-public class Utility {
+public class Waits {
 	WebDriver driver;
 	JavascriptExecutor js;
 	WebDriverWait wait;
-	public Utility(WebDriver driver)
+	public Waits(WebDriver driver)
 	{
 		this.driver = driver;
 		this.js = (JavascriptExecutor)driver;

@@ -11,9 +11,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import Utilities.Utility;
+import Utilities.Waits;
 
-public class HomePage extends Utility{
+public class HomePage extends Waits{
 	WebDriver driver;
 	public AllProductsPage allProductsPage;
 	

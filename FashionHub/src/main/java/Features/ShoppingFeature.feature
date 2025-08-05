@@ -41,3 +41,11 @@ Feature: To test the shopping feature for the FashionHub Website
 	 Examples:
 	|Company1|Company2|Company3|
 	|Nike		 |Gap		  |Zara		 |
+	
+#	Scenario Outline: User shops
+#		Given user go to shop now
+#		When Add products to the cart
+#		And proceed to checkout
+#		And add checkout details
+#		Then cart should get empty
+		

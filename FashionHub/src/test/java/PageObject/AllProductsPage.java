@@ -13,9 +13,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import Utilities.Utility;
+import Utilities.Waits;
 
-public class AllProductsPage extends Utility{
+public class AllProductsPage extends Waits{
 	
 	public WebDriver driver;
 	SoftAssert softAssert = new SoftAssert();
