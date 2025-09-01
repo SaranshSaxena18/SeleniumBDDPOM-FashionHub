@@ -63,7 +63,9 @@ public class Waits {
 			{
 				try {
 					js.executeScript("arguments[0].click()",element);
-				}catch(Exception e)
+					break;
+				}
+				catch(Exception e)
 				{
 					attempts++;
 				}

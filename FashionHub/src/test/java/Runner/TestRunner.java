@@ -11,8 +11,8 @@ import io.cucumber.testng.*;
 
 @CucumberOptions(
 		 	features = "src/main/java/Features",
-			glue={"StepDefination"}//,
-			//tags = "@CurrentDev"
+			glue={"StepDefination"}
+			,tags = "@CurrentDev"
 			//,plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 		)
 

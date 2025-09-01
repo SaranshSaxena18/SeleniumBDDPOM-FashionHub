@@ -18,6 +18,7 @@ import Utilities.Waits;
 public class AllProductsPage extends Waits{
 	
 	public WebDriver driver;
+	public CartPage cartPage;
 	SoftAssert softAssert = new SoftAssert();
 	
 	@FindBy(xpath="//h1[text()='All Products']")
@@ -52,8 +53,13 @@ public class AllProductsPage extends Waits{
 	
 	@FindBy(xpath="(//div[@class='row'])[1]/descendant::div[@class='card-body d-flex flex-column']/h6")
 	List<WebElement> FilteredProductsNames_xpath;
-
 	
+	@FindBy(css="button.btn.btn-primary.w-100")
+	List<WebElement> AddToCartButtons_xpath;
+	
+	@FindBy(xpath="(//a[@href=\"/cart\"])[4]")
+	WebElement CartButtonAfterAddingProducts_xpath;
+
 	public AllProductsPage(WebDriver driver)
 	{
 		super(driver);
@@ -145,5 +151,20 @@ public class AllProductsPage extends Waits{
 		return Arrays.asList(FilteredMenProductsTags,FilteredWomenProductsTags, FilteredFootwearProductsTags, FilteredAccessoriesProductsTags, AllCategoryProductsTags, 
 				FilteredCompanyOneProductsTags, FilteredCompanyTwoProductsTags, FilteredCompanyThreeProductsTags, FilteredAllBrandsProductsTags, FilteredProductsByPriceLowToHigh, 
 				FilteredProductsByPriceHighToLow, FilteredProductsByRating, FilteredProductsNames);
+	}
+
+	public void addProductsToCart()
+	{
+		for(int i=0; i<4; i++)
+		{
+			waitToBeClickableThenClick(AddToCartButtons_xpath.get(i));
+		}
+	}
+	
+	public CartPage goToCartPage()
+	{
+		waitToBeClickableThenClick(CartButtonAfterAddingProducts_xpath);
+		cartPage = new CartPage(driver);
+		return cartPage;
 	}
 }

@@ -26,37 +26,33 @@ public class Hooks {
 
     @Before
     public void beforeScenario(Scenario scenario) {
-    	  baseTest = new BaseTest();
-    	  driver = baseTest.initializeDriver();
-    	  String scenarioName = scenario.getName();
-          System.out.println("HOOK EXECUTED: " + scenarioName);
-          ExtentTestManager.createTest(scenarioName); 
-          
+    	  baseTest = new BaseTest();// Create a new instance of BaseTest for each scenario
+    	  driver = baseTest.initializeDriver();// Initialize WebDriver
+    	  SCENARIO_NAME.set(scenario.getName());// Store scenario name in ThreadLocal
+    	  String scenarioName = scenario.getName();// Get scenario name
+          System.out.println("HOOK EXECUTED: " + scenarioName);// Print scenario name
+          ExtentTestManager.createTest(scenarioName); // Create a new test in ExtentReports
     }
 
-    public static String get() {
-        return SCENARIO_NAME.get();
-    }
+//    public static String get() {
+//        return SCENARIO_NAME.get();//
+//    }
     
     @After(order = 1)
    	public void tearDown(Scenario scenario) throws IOException {
    		if (scenario.isFailed()) {
-   			
-   			String screenshotPath = baseTest.getScreenshot(scenario.getName(),driver);
-   			ExtentTestManager.getTest().log(Status.FAIL, "<a href='" + screenshotPath + "'>Screenshot</a>");
-   			// take screenshot:
-   			String screenshotName = scenario.getName().replaceAll(" ", "_");
-   			byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-   			scenario.attach(sourcePath, "image/png", screenshotName);
-   			//ExtentTestManager.getTest().log(Status.FAIL, "Test Failed: ");
-   			
+   			String screenshotPath = baseTest.getScreenshot(scenario.getName(),driver);// call the method from BaseTest class
+   			ExtentTestManager.getTest().log(Status.FAIL, "<a href='" + screenshotPath + "'>Screenshot</a>");// add screenshot to report
+   			String screenshotName = scenario.getName().replaceAll(" ", "_");// to avoid spaces in the name
+   			byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);// take screenshot as byte array
+   			scenario.attach(sourcePath, "image/png", screenshotName);// attach screenshot to scenario
    		}
    	}
     
     @After(order=0)
 	public void tearDown()
 	{
-    	ExtentTestManager.flush();
+    	ExtentTestManager.flush();// flush the report
 		driver.close();
 		if (driver != null) {
             driver.quit(); // closes browser after all tests are done

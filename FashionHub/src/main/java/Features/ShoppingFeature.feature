@@ -1,28 +1,13 @@
-#Author: your.email@your.domain.com
-#Keywords Summary :
-#Feature: List of scenarios.
-#Scenario: Business rule through list of steps with arguments.
-#Given: Some precondition step
-#When: Some key actions
-#Then: To observe outcomes or validation
-#And,But: To enumerate more Given,When,Then steps
-#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
-#Examples: Container for s table
-#Background: List of steps run before each of the scenarios
-#""" (Doc Strings)
-#| (Data Tables)
-#@ (Tags/Labels):To group Scenarios
-#<> (placeholder)
-#""
-## (Comments)
-#Sample Feature Definition Template
+#Author: Saransh Saxena
+#Author email: saransh.saxena18@gmail.com
+
 @tag
 Feature: To test the shopping feature for the FashionHub Website
   
   #@tag1
 	Background:
 	Given User visit the FashionHub Website
-
+  
   
   Scenario Outline: Search Product
    Given user scroll through the featured products
@@ -32,8 +17,7 @@ Feature: To test the shopping feature for the FashionHub Website
    Examples:
    | product							 |
    | Classic White T-Shirt |
-
-	@CurrentDev
+	
   Scenario Outline: Filter Products
    Given user scroll through the featured products
    When user click on the view all products
@@ -42,10 +26,12 @@ Feature: To test the shopping feature for the FashionHub Website
 	|Company1|Company2|Company3|
 	|Nike		 |Gap		  |Zara		 |
 	
-#	Scenario Outline: User shops
-#		Given user go to shop now
-#		When Add products to the cart
-#		And proceed to checkout
-#		And add checkout details
-#		Then cart should get empty
+	@CurrentDev
+	Scenario Outline: User shops
+		Given user go to shop now from home page
+		When Add products to the cart
+		And  proceed to checkout
+		And add checkout details
+		And complete the payment
+		Then cart should get empty
 		

@@ -26,6 +26,9 @@ public class HomePage extends Waits{
 	@FindBy(xpath="//div[@class='text-center mt-4']/a")
 	WebElement ViewAllProductsButton;
 	
+	@FindBy(xpath="(//a[@href='/products'])[2]")
+	WebElement ShopNowButton;
+	
 	public HomePage(WebDriver driver)
 	{
 		super(driver);
@@ -53,6 +56,14 @@ public class HomePage extends Waits{
 		waitToBeClickableThenClick(ViewAllProductsButton);
 		allProductsPage = new AllProductsPage(driver);
 		allProductsPage.verifyAllProductPageLoaded();
+		return allProductsPage;
+	}
+	
+	public AllProductsPage goToShopNowPage()
+	{
+		waitToBeClickableThenClick(ShopNowButton);
+		allProductsPage = new AllProductsPage(driver);
+		//allProductsPage.verifyAllProductPageLoaded();
 		return allProductsPage;
 	}
 }
