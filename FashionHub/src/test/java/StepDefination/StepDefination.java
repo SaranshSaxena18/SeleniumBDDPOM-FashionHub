@@ -73,6 +73,7 @@ public class StepDefination extends BaseTest {
 	
 	@When("add checkout details")
 	public void add_checkout_details() {
+		
 		checkoutPage.enterCheckoutDetails("A", "B", "a@b.com").enterShippingDetails("Address", "City", "State", "12345");
 	}
 	

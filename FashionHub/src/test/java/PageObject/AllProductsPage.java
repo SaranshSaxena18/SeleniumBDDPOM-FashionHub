@@ -157,7 +157,7 @@ public class AllProductsPage extends Waits{
 	{
 		for(int i=0; i<4; i++)
 		{
-			waitToBeClickableThenClick(AddToCartButtons_xpath.get(i));
+			waitToBeClickableThenClick(AddToCartButtons_xpath.get(i));//clicking on first 4 products Add to cart button
 		}
 	}
 	
